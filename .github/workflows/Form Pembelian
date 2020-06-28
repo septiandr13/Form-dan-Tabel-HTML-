@@ -10,14 +10,31 @@
 	</style>
 </head>
 <body>
-	<form>
+	<?php
+$name = $no = $Paket = $Pembayaran = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $nama = test_input($_POST["nama"]);
+  $no = test_input($_POST["no"]);
+  $Paket = test_input($_POST["Paket"]);
+  $Pembayaran = test_input($_POST["Pembayaran"]);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 		<b><center><h1>Pembelian Paket Pulsa Online</h1></b></center>
 		<div align="left" style="border: 1px solid black">
 			<b>
 			<label>Nama</label>
-			<input type="text" placeholder="Nama Lengkap"><br>
+			<input type="text" name="nama" placeholder="Nama Lengkap"><br>
 			<label>No Tlpn</label>
-			<input type="No" placeholder="08**********"><br>
+			<input type="No" name="no" placeholder="08**********"><br>
 			<label>Pilihan Paket Yang tersedia</label></b><br>
 			<input type="radio" name="Paket">10.000
 			<input type="radio" name="Paket">20.000
@@ -29,7 +46,7 @@
 			<input type="radio" name="Paket">300.000
 			<br>
 			<label><b>Metode Pembayaran</b></label>
-			<select>
+			<select name="Pembayaran">
 				<option>BNI (Otomatis)</option>
 				<option>BRI (Otomatis)</option>
 				<option>MANDIRI (Otomatis)</option>
@@ -47,12 +64,23 @@
 	    <button>Pilihan
 	    <span></span></button>
 	    <ul>
-	      	<li><a href="#">Pembelian</a></li>
+	      	<li><a href="D:/Kumpulan%20tugas%20uad/Pemrograman%20WEB/tugas3/tabel.html">Pembelian</a></li>
 	      	<li><a href="#">Logout</a></li>
 	      	
 	      	<li><a href="#">Tentang</a></li>
 	    </ul>
 	 </div>
 	</form>
+	<?php
+echo "<h2>VALIDASI DATA:</h2>";
+echo $nama;
+echo "<br>";
+echo $no;
+echo "<br>";
+echo $Paket;
+echo "<br>";
+echo $Pembayaran;
+echo "<br>";
+?>
 </body>
 </html>
